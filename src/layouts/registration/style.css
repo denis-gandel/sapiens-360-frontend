@@ -1,0 +1,8 @@
+.layout-registration {
+  display: grid;
+  grid-template-columns: .4fr auto;
+}
+
+.page-layout-registration {
+  padding: 20px;
+}
