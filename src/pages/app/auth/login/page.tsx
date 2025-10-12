@@ -1,8 +1,11 @@
-import { Button, FormControl, TextField } from "reshaped";
+import "./style.css"
+
 import { AtSign, KeyRound } from 'lucide-react'
 import { useState } from "react";
-import { AuthenticationService } from "../../../../services";
 import { useNavigate } from "react-router-dom";
+import { Button, FormControl, TextField } from "reshaped";
+
+import { AuthenticationService } from "../../../../services";
 
 export function Login() {
   const authenticationService: AuthenticationService = new AuthenticationService();
@@ -20,7 +23,7 @@ export function Login() {
   return (
     <div className="login-container">
       <h1>Iniciar <span>sesión</span></h1>
-      <div className="login-form-container">
+      <div className="login-form-container flex-c">
         <FormControl>
           <FormControl.Label>Nombre:</FormControl.Label>
           <TextField
