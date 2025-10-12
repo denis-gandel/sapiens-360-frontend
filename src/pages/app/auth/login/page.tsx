@@ -1,9 +1,16 @@
 import "./style.css"
 
-import { AtSign, KeyRound } from 'lucide-react'
+import {
+  AtSign,
+  KeyRound
+} from 'lucide-react'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, FormControl, TextField } from "reshaped";
+import {
+  Button,
+  FormControl,
+  TextField
+} from "reshaped";
 
 import { AuthenticationService } from "../../../../services";
 
