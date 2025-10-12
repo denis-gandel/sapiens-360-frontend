@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import { RegistrationRoutes } from "./";
+
+import { AuthRoutes, RegistrationRoutes } from "./";
 
 export function AppRoutes() {
   return (
     <Routes>
       <Route path="/registration/*" element={<RegistrationRoutes />} />
+      <Route path="/auth/*" element={<AuthRoutes />} />
     </Routes>
   )
 }

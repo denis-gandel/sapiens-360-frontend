@@ -1,7 +1,9 @@
 import "./style.css"
-import { Button } from "reshaped"
-import Logo from "../../../assets/logo/full.png"
+
 import { LogIn, University } from "lucide-react"
+import { Button } from "reshaped"
+
+import Logo from "../../../assets/logo/full.png"
 
 export function Home() {
   return (
@@ -10,7 +12,7 @@ export function Home() {
         <img src={Logo} alt="Sapiens360 logo" />
         <div className="cover-actions-hp flex-r flex-cc">
           <Button icon={University} color="primary" rounded href="/app/registration">Registrar instituto</Button>
-          <Button icon={LogIn} rounded>Iniciar sesión</Button>
+          <Button icon={LogIn} href="/app/auth/login" rounded>Iniciar sesión</Button>
         </div>
       </main>
     </div>
