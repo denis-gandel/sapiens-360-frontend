@@ -1,0 +1,12 @@
+.text-tac-component {
+  width: 100%;
+}
+
+.text-tac-section {
+  padding: 10px 20px;
+  text-align: justify;
+}
+
+.text-tac-section > ul {
+  margin-left: 40px;
+}
