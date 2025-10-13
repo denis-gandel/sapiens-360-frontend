@@ -24,7 +24,7 @@ export function Login() {
 
   const handleLogin = async () => {
     const result = await authenticationService.login(email, password)
-    if (result) navigate('/app/dashboard')
+    if (result) navigate('/app/sapiens/dashboard')
   }
 
   return (

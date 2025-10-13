@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { User } from "../../models";
 
 export class AuthenticationService {
   private readonly API_URL = `${import.meta.env.VITE_BACKEND_URL}auth`;
@@ -14,6 +15,21 @@ export class AuthenticationService {
       }
     );
 
+    if (response.status === 200) {
+      localStorage.setItem(import.meta.env.VITE_JWT_SECTION, response.data.jwt);
+    }
+
     return response.status === 200;
+  }
+
+  public async me(jwt: string) {
+    if (!jwt) return null;
+    const response = await axios.get(`${this.API_URL}/me`, {
+      headers: {
+        Authorization: jwt,
+      },
+    });
+
+    return response.data as User;
   }
 }
