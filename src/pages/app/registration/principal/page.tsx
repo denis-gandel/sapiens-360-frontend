@@ -69,7 +69,7 @@ export function Principal() {
   const handleRegister = async () => {
     const result = await createPrincipal()
     if (result) {
-      navigate('/app/dashboard')
+      navigate('/app/sapiens/dashboard')
     }
   }
 
