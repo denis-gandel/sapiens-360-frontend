@@ -1,0 +1,17 @@
+.sidebar-component {
+  min-width: 80px;
+  max-width: 380px;
+  width: 100%;
+  height: 100dvh;
+  background-color: var(--background-color-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 10px;
+}
+
+.sc-pages-logo {
+  max-width: 64px;
+  max-height: 64px;
+}

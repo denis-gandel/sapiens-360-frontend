@@ -1,2 +1,3 @@
-export * from './dashboard/page';
-export * from './routes';
+export * from "./dashboard";
+export * from "./lms";
+export * from "./routes";

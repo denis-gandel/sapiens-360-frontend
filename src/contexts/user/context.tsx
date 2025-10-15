@@ -4,11 +4,19 @@ import {
   useEffect,
   useMemo,
   useState,
-  type ReactNode
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction
 } from "react";
 
-import type { User } from "../../models";
-import { AuthenticationService } from "../../services";
+import type {
+  RolePermissionsResponse,
+  User
+} from "../../models";
+import {
+  AuthenticationService,
+  AuthorizationService
+} from "../../services";
 
 interface Props {
   children: ReactNode
@@ -18,9 +26,11 @@ interface Types {
   // Values
   me: User | null
   jwt: string
+  permissions: RolePermissionsResponse[]
 
   // Setters
-  setJwt: React.Dispatch<React.SetStateAction<string>>
+  setJwt: Dispatch<SetStateAction<string>>
+  setPermissions: Dispatch<SetStateAction<RolePermissionsResponse[]>>
 }
 
 const UserContext = createContext<Types | undefined>(undefined)
@@ -28,12 +38,22 @@ const UserContext = createContext<Types | undefined>(undefined)
 export const UserProvider = ({ children }: Props) => {
   const [me, setMe] = useState<User | null>(null)
   const [jwt, setJwt] = useState("")
+  const [permissions, setPermissions] = useState<RolePermissionsResponse[]>([])
 
   const authenticationService: AuthenticationService = new AuthenticationService()
+  const authorizationService: AuthorizationService = new AuthorizationService()
 
   const getMe = async () => {
     const user = await authenticationService.me(jwt)
     if (user) setMe(user)
+  }
+
+  const getPermissions = async () => {
+    if (me) {
+      const response = await authorizationService.getPermissionsByRole(me.role_id, me.tenant_id ?? "")
+
+      setPermissions(response)
+    }
   }
 
   useEffect(() => {
@@ -47,17 +67,24 @@ export const UserProvider = ({ children }: Props) => {
     getMe()
   }, [jwt])
 
+  useEffect(() => {
+    getPermissions()
+  }, [me])
+
   const result = useMemo(() => ({
     // Values
     me,
     jwt,
+    permissions,
 
     // Setters
-    setJwt
+    setJwt,
+    setPermissions
   }), [
     // Values
     me,
-    jwt
+    jwt,
+    permissions
   ])
 
   return (
