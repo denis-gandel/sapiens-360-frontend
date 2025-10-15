@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import { Dashboard } from "./";
+import { Dashboard, Lms } from "./";
 
 import { UserProvider } from "../../../contexts";
 import { SapiensLayoutProvider } from "../../../contexts/sapiens-layout/context";
@@ -13,6 +13,7 @@ export function SapiensRoutes() {
         <SapiensLayout>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/lms" element={<Lms />} />
           </Routes>
         </SapiensLayout>
       </SapiensLayoutProvider>

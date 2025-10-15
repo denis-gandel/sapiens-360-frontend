@@ -1,6 +1,10 @@
 :root {
   --primary-color: #2b7fff;
   --secondary-color: #ff6900;
+
+  --background-color-normal: #f3f4f6;
+  --background-color-light: #ffffff;
+  --background-color-inactive: #e5e7eb;
 }
 
 /* ================================================== */
@@ -10,6 +14,7 @@
 .page-container {
   width: 100%;
   min-height: 100vh;
+  background-color: var(--background-color-normal);
 }
 
 .full-section {

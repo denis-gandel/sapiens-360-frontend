@@ -2,6 +2,8 @@
   width: 100%;
   min-height: 100dvh;
   max-height: 100dvh;
+  background-color: var(--background-color-normal);
+  display: flex;
 }
 
 .sapiens-loading {
@@ -14,5 +16,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: var(--background-color-light);
+}
+
+.sl-content-container {
+  flex-grow: 1;
 }

@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 
 import { useSapiensLayoutContext } from "../../contexts/sapiens-layout/context"
 import { Loader } from "reshaped"
+import { Sidebar } from "./components"
 
 interface Props {
   children: ReactNode
@@ -20,7 +21,9 @@ export function SapiensLayout({ children }: Readonly<Props>) {
           <Loader size="large" ariaLabel="Loading" />
         </div>
       }
-      <aside className="sl-sidebar-container"></aside>
+      <aside className="sl-sidebar-container">
+        <Sidebar />
+      </aside>
       <div className="sl-content-container">
         <header className="slc-header">
           {title && <h1>{title}</h1>}

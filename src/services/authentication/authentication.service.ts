@@ -32,4 +32,9 @@ export class AuthenticationService {
 
     return response.data as User;
   }
+
+  public isLogged() {
+    const jwt = localStorage.getItem(import.meta.env.VITE_JWT_SECTION);
+    return jwt !== null;
+  }
 }
