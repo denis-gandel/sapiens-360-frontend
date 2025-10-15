@@ -6,6 +6,7 @@
   top: 0;
   left: 80px;
   background-color: var(--background-color-light);
+  z-index: 1000;
 }
 
 .smc-options {

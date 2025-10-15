@@ -19,3 +19,10 @@
   padding: 1rem;
   border-radius: 0.5rem;
 }
+
+.ump-table-cell-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 1rem;
+}
