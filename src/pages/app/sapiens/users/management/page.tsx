@@ -1,12 +1,26 @@
-import { useEffect, useState } from "react"
+import {
+  useEffect,
+  useState
+} from "react"
 import { useSapiensLayoutContext } from "../../../../../contexts/sapiens-layout/context"
 import "./style.css"
-import { Button, Pagination, ScrollArea, Table } from "reshaped"
-import { UserPlus } from "lucide-react"
-import { RolesService, UserService } from "../../../../../services"
-import type { Role, User } from "../../../../../models"
+import {
+  Pagination,
+  ScrollArea,
+  Table
+} from "reshaped"
+import {
+  RolesService,
+  UserService
+} from "../../../../../services"
+import type {
+  Role,
+  User
+} from "../../../../../models"
 import { useUserContext } from "../../../../../contexts"
 import { UserCell } from "./components/user-cell/component"
+import { UserCreateAction } from "./components"
+import { VerifyPermission } from "../../../../../components/general/permissions/verify-permission/component"
 
 export function UsersManagment() {
 
@@ -49,7 +63,9 @@ export function UsersManagment() {
   return (
     <div className="users-management-page">
       <div className="ump-header">
-        <Button icon={UserPlus} color="primary" rounded>Agregar usuario</Button>
+        <VerifyPermission permission="CREATE_USERS">
+          <UserCreateAction />
+        </VerifyPermission>
         {/* <Button icon={UserX} color="critical" rounded>Eliminar selección</Button> */}
       </div>
       <div className="ump-body">

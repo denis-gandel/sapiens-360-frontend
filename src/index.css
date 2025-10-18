@@ -27,6 +27,10 @@ body {
   height: 100vh;
 }
 
+.w-full {
+  width: 100%;
+}
+
 /* ================================================== */
 /* HEADINGS */
 /* ================================================== */
@@ -91,6 +95,11 @@ h6 {
 .flex-cc {
   align-items: center;
   justify-content: center;
+}
+
+.flex-cb {
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* ================================================== */

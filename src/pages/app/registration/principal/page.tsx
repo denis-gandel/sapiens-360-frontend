@@ -45,7 +45,7 @@ export function Principal() {
     createPrincipal
   } = useRegistrationContext()
 
-  const MIN_AGE = 25;
+  const MIN_AGE = 5;
   const MAX_AGE = 65;
 
   const today = new Date();

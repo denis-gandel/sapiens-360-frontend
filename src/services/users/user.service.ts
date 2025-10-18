@@ -21,7 +21,7 @@ export class UserService {
     orderBy?: string,
     direction?: "asc" | "desc"
   ) {
-    let apiUrl = `${this.API_URL}?filters[tenant_id]=${tenantId}`;
+    let apiUrl = `${this.API_URL}?filters[is_active]=true&filters[tenant_id]=${tenantId}`;
     if (page) apiUrl = `${apiUrl}&page=${page}`;
     if (size) apiUrl = `${apiUrl}&size=${size}`;
     if (orderBy) apiUrl = `${apiUrl}&orderBy=${orderBy}`;
@@ -39,5 +39,33 @@ export class UserService {
     };
 
     return data;
+  }
+
+  public async updateUser(id: string, user: User) {
+    try {
+      const apiUrl = `${this.API_URL}/${id}`;
+
+      const response = await axios.put(apiUrl, user, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      return response.status === 200;
+    } catch {
+      return false;
+    }
+  }
+
+  public async deleteUser(id: string) {
+    try {
+      const apiUrl = `${this.API_URL}/${id}`;
+
+      const response = await axios.delete(apiUrl);
+
+      return response.status === 200;
+    } catch {
+      return false;
+    }
   }
 }

@@ -50,7 +50,7 @@ export const UserProvider = ({ children }: Props) => {
 
   const getPermissions = async () => {
     if (me) {
-      const response = await authorizationService.getPermissionsByRole(me.role_id, me.tenant_id ?? "")
+      const response = await authorizationService.getPermissionsByRole(me.role_id ?? 1, me.tenant_id ?? "")
 
       setPermissions(response)
     }

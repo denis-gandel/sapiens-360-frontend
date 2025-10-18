@@ -1,6 +1,6 @@
 import "./style.css"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { LucideIcon } from "lucide-react"
 
 import type { RolePermissionsResponse } from "../../../../models"
@@ -19,6 +19,7 @@ export const SidebarOption = ({ option }: Props) => {
 
   const navigate = useNavigate()
   const location = useLocation()
+  const sidebarMenuRef = useRef<HTMLDivElement>(null)
 
   const handleGo = () => {
     if (option.subCategories && option.subCategories.length > 0) {
@@ -42,13 +43,29 @@ export const SidebarOption = ({ option }: Props) => {
 
   useEffect(() => { verifySelection() }, [location])
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (sidebarMenuRef.current && !sidebarMenuRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isOpen])
+
   return (
-    <>
+    <div ref={sidebarMenuRef} className="sidebar-option-wrapper">
       <button className={`sidebar-option-component ${isSelected ? 'soc-is-selected' : ''}`} onClick={handleGo}>
         {Icon && <Icon size={32} />}
       </button>
       {
-        (isOpen && option.subCategories && option.subCategories.length > 0) && <SidebarMenu name={option.name ?? ""} parentPath={option.path ?? ""} options={option.subCategories} />}
-    </>
+        (isOpen && option.subCategories && option.subCategories.length > 0) && <SidebarMenu setIsOpen={setIsOpen} name={option.name ?? ""} parentPath={option.path ?? ""} options={option.subCategories} />}
+    </div>
   )
 }

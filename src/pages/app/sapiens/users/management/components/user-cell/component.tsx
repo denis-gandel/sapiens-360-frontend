@@ -1,8 +1,8 @@
-import { UserPen, UserX } from "lucide-react"
-import { Avatar, Button, Table, Tooltip } from "reshaped"
+import { Avatar, Table } from "reshaped"
 
 import type { Role, User } from "../../../../../../../models"
 import { useUserContext } from "../../../../../../../contexts"
+import { DeleteAction, ViewUpdateAction } from "../user-cell-actions"
 
 interface Props {
   user: User
@@ -25,7 +25,7 @@ export const UserCell = ({ user, roles }: Props) => {
   return (
     <Table.Row>
       <Table.Cell verticalAlign="center" width={16}>
-        <Avatar size={8} src={user.image_url ?? ""} initials={getInitials(user.shortname)} />
+        <Avatar size={8} src={user.image_url ?? ""} initials={getInitials(user.shortname ?? "")} />
       </Table.Cell>
       <Table.Cell verticalAlign="center" minWidth={48}>{user.name}</Table.Cell>
       <Table.Cell verticalAlign="center" minWidth={32}>{user.email}</Table.Cell>
@@ -35,13 +35,9 @@ export const UserCell = ({ user, roles }: Props) => {
       <Table.Cell verticalAlign="center" align="center">
         <div className="ump-table-cell-actions">
           {
-            me?.id !== user.id && <Tooltip text="Eliminar usuario">
-              {(attributes) => <Button attributes={attributes} icon={UserX} color="critical" />}
-            </Tooltip>
+            me?.id !== user.id && <DeleteAction user={user} />
           }
-          <Tooltip text="Ver/Editar usuario">
-            {(attributes) => <Button attributes={attributes} icon={UserPen} color="primary" />}
-          </Tooltip>
+          <ViewUpdateAction user={user} />
         </div>
       </Table.Cell>
     </Table.Row>

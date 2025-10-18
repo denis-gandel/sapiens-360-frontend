@@ -21,6 +21,15 @@ export const Sidebar = () => {
             subCategories: []
           }
         } />
+        <SidebarOption option={
+          {
+            name: 'Perfil',
+            path: '/profile',
+            code: 'PROFILE_PAGE',
+            permissions: [],
+            subCategories: []
+          }
+        } />
         {
           permissions.map((permission) => {
             return <SidebarOption key={`sidebar-option-${permission.id}`} option={permission} />
