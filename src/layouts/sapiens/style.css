@@ -22,3 +22,23 @@
 .sl-content-container {
   flex-grow: 1;
 }
+
+.slc-header {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--background-color-light);
+}
+
+.slc-header > h1  {
+  padding: 0;
+}
+
+.slc-header > p {
+  color: var(--primary-color);
+}
+
+.slc-header > p > span {
+  color: var(--secondary-color);
+}

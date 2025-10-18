@@ -27,7 +27,7 @@ export function SapiensLayout({ children }: Readonly<Props>) {
       <div className="sl-content-container">
         <header className="slc-header">
           {title && <h1>{title}</h1>}
-          {subtitle && <h2>{subtitle}</h2>}
+          {subtitle && <p>{subtitle}</p>}
         </header>
         <main className="slc-main">{children}</main>
       </div>

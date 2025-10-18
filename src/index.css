@@ -11,6 +11,11 @@
 /* GENERALS */
 /* ================================================== */
 
+body {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 .page-container {
   width: 100%;
   min-height: 100vh;
@@ -20,6 +25,10 @@
 .full-section {
   width: 100%;
   height: 100vh;
+}
+
+.w-full {
+  width: 100%;
 }
 
 /* ================================================== */
@@ -86,6 +95,11 @@ h6 {
 .flex-cc {
   align-items: center;
   justify-content: center;
+}
+
+.flex-cb {
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* ================================================== */

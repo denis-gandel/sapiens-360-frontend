@@ -1,0 +1,28 @@
+.users-management-page {
+  padding: 1rem;
+}
+
+.ump-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+  background-color: var(--background-color-light);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ump-body {
+  width: 100%;
+  background-color: var(--background-color-light);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.ump-table-cell-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 1rem;
+}

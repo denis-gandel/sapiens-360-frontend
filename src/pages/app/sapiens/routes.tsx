@@ -5,6 +5,7 @@ import { Dashboard, Lms } from "./";
 import { UserProvider } from "../../../contexts";
 import { SapiensLayoutProvider } from "../../../contexts/sapiens-layout/context";
 import { SapiensLayout } from "../../../layouts";
+import { UsersRoutes } from "./users";
 
 export function SapiensRoutes() {
   return (
@@ -14,6 +15,7 @@ export function SapiensRoutes() {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/lms" element={<Lms />} />
+            <Route path="/users/*" element={<UsersRoutes />} />
           </Routes>
         </SapiensLayout>
       </SapiensLayoutProvider>

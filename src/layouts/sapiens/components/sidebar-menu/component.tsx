@@ -2,16 +2,23 @@ import "./style.css"
 
 import type { RolePermissionsResponse } from "../../../../models"
 import { useNavigate } from "react-router-dom"
+import type { Dispatch, SetStateAction } from "react"
 
 interface Props {
   name: string
   parentPath: string
   options: RolePermissionsResponse[]
+  setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export const SidebarMenu = ({ name, parentPath, options }: Props) => {
+export const SidebarMenu = ({ name, parentPath, options, setIsOpen }: Props) => {
 
   const navigate = useNavigate()
+
+  const handleNavigate = (path: string) => {
+    setIsOpen(false)
+    navigate(`/app/sapiens${parentPath}${path}`)
+  }
 
   return (
     <div className="sidebar-menu-component">
@@ -23,7 +30,7 @@ export const SidebarMenu = ({ name, parentPath, options }: Props) => {
               <button
                 className="smc-option"
                 key={`sidebar-menu-option-${option.id}`}
-                onClick={() => navigate(`/app/sapiens${parentPath}${option.path}`)}
+                onClick={() => handleNavigate(option.path ?? "")}
               >
                 {option.name}
               </button>))
