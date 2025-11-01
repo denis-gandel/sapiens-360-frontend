@@ -8,6 +8,12 @@ export class InstituteService {
     import.meta.env.VITE_BACKEND_URL
   }academics/institutes`;
 
+  public async getInstitute(id: string) {
+    const apiUrl = `${this.API_URL}/by?column=id&value=${id}`;
+    const response = await axios.get(apiUrl);
+    return response.data;
+  }
+
   public async createInstitute(institute: Institute) {
     try {
       const result = await instituteSchema.safeParseAsync(institute);
