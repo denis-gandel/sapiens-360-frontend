@@ -4,7 +4,7 @@ import {
   AtSign,
   KeyRound
 } from 'lucide-react'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -19,16 +19,26 @@ export function Login() {
 
   const navigate = useNavigate()
 
+  const [isLogged, setIsLogged] = useState(false)
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     const result = await authenticationService.login(email, password)
-    if (result) navigate('/app/dashboard')
+    if (result) navigate('/app/sapiens/dashboard')
   }
 
+  useEffect(() => {
+    setIsLogged(authenticationService.isLogged())
+  }, [])
+
+  useEffect(() => {
+    if (isLogged) navigate('/app/sapiens/dashboard')
+  }, [isLogged])
+
   return (
-    <div className="login-container">
+    <div className="login-container page-container">
       <h1>Iniciar <span>sesión</span></h1>
       <div className="login-form-container flex-c">
         <FormControl>

@@ -9,6 +9,7 @@ import {
   type SetStateAction
 } from "react";
 import axios from "axios";
+
 import type { Institute, User } from "../../models";
 import {
   AuthenticationService,
@@ -162,12 +163,12 @@ export const RegistrationProvider = ({ children }: Props) => {
       foundation_date: foundationDate,
       start_date: startDate,
       end_date: endDate,
-      type_id: parseInt(type ?? "0"),
-      nature_id: parseInt(nature ?? "0"),
-      period_id: parseInt(period ?? "0"),
+      type_id: Number.parseInt(type ?? "0"),
+      nature_id: Number.parseInt(nature ?? "0"),
+      period_id: Number.parseInt(period ?? "0"),
       country_id: 1,
-      state_id: parseInt(state ?? "0"),
-      city_id: parseInt(city ?? "0"),
+      state_id: Number.parseInt(state ?? "0"),
+      city_id: Number.parseInt(city ?? "0"),
     }
     const instituteId = await instituteService.createInstitute(institute)
     if (instituteId) {
@@ -181,13 +182,9 @@ export const RegistrationProvider = ({ children }: Props) => {
 
   const createPrincipal = async () => {
     if (!birthdate) return false
-    const firstname = firstnames.split(' ')[0]
-    const lastname = lastnames.split(' ')[0]
-    const shortname = `${lastname} ${firstname}`
     const principal: User = {
       firstnames: firstnames,
       lastnames: lastnames,
-      shortname: shortname,
       ci: ci,
       address: address,
       phone: phonePrincipal,

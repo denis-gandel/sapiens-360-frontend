@@ -1,0 +1,33 @@
+.readfield-component {
+  font-size: 14px;
+  padding: 0 7px 0 7px;
+  border: 1px solid oklch(0 0.01 262.67 / 0.12);
+  background-color: oklch(1 0 262.67);
+  line-height: 20px;
+  border-radius: 4px;
+}
+
+.rfc-icon {
+  width: 16px;
+  height: 100%;
+  position: relative;
+}
+
+.rfc-i-svg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, 50%);
+}
+
+.rfc-text {
+  padding: 7px 0 7px 8px;
+  flex-grow: 1;
+}
+
+.rfx-suffix {
+  padding: 7px 0 7px 8px;
+  display: inline-flex;
+  white-space: nowrap;
+  border-left: 1px solid oklch(0 0.01 262.67 / 0.12);
+}

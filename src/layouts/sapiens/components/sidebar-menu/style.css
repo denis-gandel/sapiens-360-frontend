@@ -1,0 +1,30 @@
+.sidebar-menu-component {
+  width: 100%;
+  max-width: 300px;
+  height: 100dvh;
+  position: absolute;
+  top: 0;
+  left: 80px;
+  background-color: var(--background-color-light);
+  z-index: 1000;
+}
+
+.smc-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.smc-option {
+  padding: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--primary-color);
+  border: none;
+  background-color: transparent;
+  text-align: left;
+}
+
+.smc-option:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
