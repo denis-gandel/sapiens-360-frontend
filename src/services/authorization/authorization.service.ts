@@ -16,7 +16,6 @@ export class AuthorizationService {
   public async getPermissionsByRole(roleId: number, tenantId: string) {
     const apiUrl = `${this.API_URL}auth/role-permissions/role/${roleId}/permissions?tenant=${tenantId}`;
     const response = await axios.get(apiUrl);
-    console.log(response.data);
     return response.data as RolePermissionsResponse[];
   }
 }

@@ -92,13 +92,11 @@ export function Institute() {
     if (me) {
       const response = await instituteService.getInstitute(me.tenant_id ?? "")
       setInstitute(response)
-      console.log(response)
     }
   }
 
   const setInfo = () => {
     if (institute) {
-      console.log(institute)
       setName(institute.name)
       setSubdomain(institute.subdomain)
       setLocation(institute.location)
