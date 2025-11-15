@@ -23,7 +23,6 @@ export class InstituteService {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
         });
         if (response.status === 200 || response.status === 201) {
           const institute = await axios.get(

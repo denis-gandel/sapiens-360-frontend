@@ -14,7 +14,8 @@ import type { Institute, User } from "../../models";
 import {
   AuthenticationService,
   InstituteService,
-  UserService
+  UserService,
+  RolePermissionsService
 } from "../../services";
 
 type SelectType = { label: string, value: string }
@@ -129,6 +130,7 @@ export const RegistrationProvider = ({ children }: Props) => {
   const instituteService: InstituteService = new InstituteService()
   const userService: UserService = new UserService()
   const authenticationService: AuthenticationService = new AuthenticationService()
+  const rolePermissionsService: RolePermissionsService = new RolePermissionsService()
 
   // Functions
   const changeValue = (value: any, setValue: Dispatch<SetStateAction<any>>) => setValue(value)
@@ -175,6 +177,7 @@ export const RegistrationProvider = ({ children }: Props) => {
       const emailDomain = email.split('@')[1]
       setEmailDomainPrincipal(`@${emailDomain}`)
       setId(instituteId)
+      rolePermissionsService.initializeTenant(instituteId)
       return true
     }
     return false
