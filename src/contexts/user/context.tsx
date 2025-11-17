@@ -15,7 +15,7 @@ import type {
 } from "../../models";
 import {
   AuthenticationService,
-  AuthorizationService
+  RolePermissionsService
 } from "../../services";
 
 interface Props {
@@ -41,7 +41,7 @@ export const UserProvider = ({ children }: Props) => {
   const [permissions, setPermissions] = useState<RolePermissionsResponse[]>([])
 
   const authenticationService: AuthenticationService = new AuthenticationService()
-  const authorizationService: AuthorizationService = new AuthorizationService()
+  const rolePermissionsService: RolePermissionsService = new RolePermissionsService()
 
   const getMe = async () => {
     const user = await authenticationService.me(jwt)
@@ -50,7 +50,7 @@ export const UserProvider = ({ children }: Props) => {
 
   const getPermissions = async () => {
     if (me) {
-      const response = await authorizationService.getPermissionsByRole(me.role_id ?? 1, me.tenant_id ?? "")
+      const response = await rolePermissionsService.getPermissionsByRole(me.role_id ?? 1, me.tenant_id ?? "")
 
       setPermissions(response)
     }

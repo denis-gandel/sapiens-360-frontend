@@ -15,7 +15,7 @@ import {
   AuthenticationService,
   InstituteService,
   UserService,
-  RolePermissionsService
+  RolePermissionsService,
 } from "../../services";
 
 type SelectType = { label: string, value: string }
@@ -172,12 +172,15 @@ export const RegistrationProvider = ({ children }: Props) => {
       state_id: Number.parseInt(state ?? "0"),
       city_id: Number.parseInt(city ?? "0"),
     }
-    const instituteId = await instituteService.createInstitute(institute)
-    if (instituteId) {
+    await instituteService.store(institute)
+
+    const data = await instituteService.show("subdomain", subdomain ?? "", ) satisfies Institute
+
+    if (data.id) {
       const emailDomain = email.split('@')[1]
       setEmailDomainPrincipal(`@${emailDomain}`)
-      setId(instituteId)
-      rolePermissionsService.initializeTenant(instituteId)
+      setId(data.id)
+      rolePermissionsService.initialize(data.id)
       return true
     }
     return false
@@ -199,13 +202,9 @@ export const RegistrationProvider = ({ children }: Props) => {
       tenant_id: id
     }
 
-    const result = await userService.createUser(principal)
-
-    if (result) {
-      const isLogged = await authenticationService.login(`${emailPrincipal}${emailDomainPrincipal}`, password)
-      return isLogged
-    }
-    return false
+    await userService.store(principal)
+    const isLogged = await authenticationService.login(`${emailPrincipal}${emailDomainPrincipal}`, password)
+    return isLogged
   }
 
   const verifySubdomain = async () => {

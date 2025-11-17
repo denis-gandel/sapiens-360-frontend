@@ -1,9 +1,7 @@
 import {
   AtSign,
-  BadgeAlert,
   Cake,
   CaseSensitive,
-  Check,
   IdCard,
   KeyRound,
   MapPin,
@@ -11,7 +9,6 @@ import {
   Shield,
   UserPlus,
   VenusAndMars,
-  X
 } from "lucide-react"
 import {
   useEffect,
@@ -29,11 +26,10 @@ import {
   Popover,
   Select,
   TextField,
-  useToast,
   useToggle,
   View
 } from "reshaped"
-import { AuthorizationService, UserService } from "../../../../../../../../services";
+import { RolesService, UserService } from "../../../../../../../../services";
 import type { User } from "../../../../../../../../models";
 import { useUserContext } from "../../../../../../../../contexts";
 
@@ -56,7 +52,6 @@ export const UserCreateAction = () => {
   }[]>([])
 
   const { active, activate, deactivate } = useToggle(false);
-  const toast = useToast()
   const { me } = useUserContext()
 
   const MIN_AGE = 4;
@@ -64,7 +59,7 @@ export const UserCreateAction = () => {
 
   const userService = new UserService()
   const today = new Date();
-  const authorizationService = new AuthorizationService()
+  const rolesService = new RolesService()
 
   const minDate = new Date(today.getFullYear() - MAX_AGE, today.getMonth(), today.getDate());
   const maxDate = new Date(today.getFullYear() - MIN_AGE, today.getMonth(), today.getDate());
@@ -99,29 +94,12 @@ export const UserCreateAction = () => {
       tenant_id: me?.tenant_id
     }
 
-    const response = await userService.createUser(data)
-
-    if (response) {
-      deactivate()
-      const id = toast.show({
-        text: "Usuario creado con éxito",
-        icon: Check,
-        actionsSlot: <Button onClick={() => toast.hide(id)} color="positive"><X size={16} /></Button>,
-        color: "positive",
-      })
-    } else {
-      deactivate()
-      const id = toast.show({
-        text: "Ocurrió un error. Inténtalo más tarde.",
-        icon: BadgeAlert,
-        actionsSlot: <Button onClick={() => toast.hide(id)} color="media"><X size={16} /></Button>,
-        color: "warning",
-      })
-    }
+    await userService.store(data)
+    deactivate()
   }
 
   const getRoles = async () => {
-    const response = await authorizationService.getRoles()
+    const response = await rolesService.index()
 
     const result = response.map((role) => {
       return { label: role.name, value: `${role.id}` }

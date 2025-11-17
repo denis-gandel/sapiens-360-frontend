@@ -37,14 +37,14 @@ export function UsersManagment() {
 
   const getUsers = async () => {
     if (me) {
-      const response = await userService.getAllUsers(me.tenant_id ?? "", page, 10)
-      setUsers(response.data)
-      setLastPage(response.lastPage)
+      const users = await userService.index(page, 10, "", "asc", { tenant_id: me.tenant_id ?? "", })
+      setUsers(users)
+      setLastPage(100)
     }
   }
 
   const getRoles = async () => {
-    const response = await rolesService.getRoles()
+    const response = await rolesService.index()
     setRoles(response)
   }
 

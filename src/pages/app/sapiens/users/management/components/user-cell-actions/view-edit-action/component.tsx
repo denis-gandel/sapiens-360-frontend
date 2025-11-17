@@ -1,15 +1,12 @@
 import {
   AtSign,
-  BadgeAlert,
   Cake,
   CaseSensitive,
-  Check,
   IdCard,
   MapPin,
   Phone,
   UserPen,
   VenusAndMars,
-  X
 } from "lucide-react"
 import {
   Button,
@@ -22,7 +19,6 @@ import {
   Select,
   TextField,
   Tooltip,
-  useToast,
   useToggle,
   View
 } from "reshaped"
@@ -51,7 +47,6 @@ export const ViewUpdateAction = ({ user }: Props) => {
   const [birthdate, setBirthdate] = useState<Date>(new Date());
 
   const { active, activate, deactivate } = useToggle(false);
-  const toast = useToast()
 
   const MIN_AGE = 4;
   const MAX_AGE = 65;
@@ -89,25 +84,9 @@ export const ViewUpdateAction = ({ user }: Props) => {
       birthdate,
     }
 
-    const response = await userService.updateUser(user.id ?? "", data)
+    await userService.update(data, user.id ?? "")
+    deactivate()
 
-    if (response) {
-      deactivate()
-      const id = toast.show({
-        text: "Usuario actualizado con éxito",
-        icon: Check,
-        actionsSlot: <Button onClick={() => toast.hide(id)} color="positive"><X size={16} /></Button>,
-        color: "positive",
-      })
-    } else {
-      deactivate()
-      const id = toast.show({
-        text: "Ocurrió un error. Inténtalo más tarde.",
-        icon: BadgeAlert,
-        actionsSlot: <Button onClick={() => toast.hide(id)} color="media"><X size={16} /></Button>,
-        color: "warning",
-      })
-    }
   }
 
   useEffect(() => {

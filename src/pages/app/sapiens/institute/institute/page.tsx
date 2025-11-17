@@ -90,7 +90,7 @@ export function Institute() {
 
   const getInfo = async () => {
     if (me) {
-      const response = await instituteService.getInstitute(me.tenant_id ?? "")
+      const response = await instituteService.show("id", me.tenant_id ?? "")
       setInstitute(response)
     }
   }

@@ -1,7 +1,7 @@
 import "./style.css"
 
-import { BadgeAlert, Check, UserX, X } from "lucide-react"
-import { Button, Dismissible, Modal, Tooltip, useToast, useToggle, View } from "reshaped"
+import { UserX } from "lucide-react"
+import { Button, Dismissible, Modal, Tooltip, useToggle, View } from "reshaped"
 
 import type { User } from "../../../../../../../../models"
 import { UserService } from "../../../../../../../../services"
@@ -13,30 +13,12 @@ interface Props {
 export const DeleteAction = ({ user }: Props) => {
 
   const { active, activate, deactivate } = useToggle(false);
-  const toast = useToast()
 
   const userService = new UserService()
 
   const handleDelete = async () => {
-    const response = await userService.deleteUser(user.id ?? "")
-
+    await userService.destroy(user.id ?? "")
     deactivate()
-
-    if (response) {
-      const id = toast.show({
-        text: "Usuario eliminado con éxito",
-        icon: Check,
-        actionsSlot: <Button onClick={() => toast.hide(id)} color="positive"><X size={16} /></Button>,
-        color: "positive",
-      })
-    } else {
-      const id = toast.show({
-        text: "Ocurrió un error. Inténtalo más tarde.",
-        icon: BadgeAlert,
-        actionsSlot: <Button onClick={() => toast.hide(id)} color="media"><X size={16} /></Button>,
-        color: "warning",
-      })
-    }
   }
 
   return (
