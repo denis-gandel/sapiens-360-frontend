@@ -1,10 +1,6 @@
-export * from './academics/institute.service';
-
-export * from './authentication/authentication.service';
-
-export * from './authorization/role-permissions.service';
-export * from './authorization/roles.service';
-
-export * from './files/files.service';
-
-export * from './users/user.service';
+export * from "./academics";
+export * from "./authentication";
+export * from "./authorization";
+export * from "./courses";
+export * from "./files/files.service";
+export * from "./users/user.service";
