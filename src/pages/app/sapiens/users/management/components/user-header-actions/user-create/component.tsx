@@ -96,6 +96,12 @@ export const UserCreateAction = () => {
 
     await userService.store(data)
     deactivate()
+    clearData()
+  }
+
+  const handleCancel = () => {
+    deactivate();
+    clearData();
   }
 
   const getRoles = async () => {
@@ -108,6 +114,19 @@ export const UserCreateAction = () => {
     setRoles(result)
   }
 
+  const clearData = () => {
+    setRole("");
+    setFirstnames("");
+    setLastnames("");
+    setCi("");
+    setAddress("");
+    setPhone("");
+    setEmail("");
+    setPassword("");
+    setGender("M");
+    setBirthdate(new Date());
+  }
+
   useEffect(() => {
     getRoles()
   }, [])
@@ -115,8 +134,8 @@ export const UserCreateAction = () => {
   return (
     <>
       <Button icon={UserPlus} color="primary" onClick={activate} rounded>Agregar usuario</Button>
-      <Modal active={active} onClose={deactivate}>
-        <Dismissible onClose={deactivate} closeAriaLabel="Close modal">
+      <Modal active={active} onClose={handleCancel} position="end">
+        <Dismissible onClose={handleCancel} closeAriaLabel="Close modal">
           <Modal.Title>Crear nuevo usuario</Modal.Title>
         </Dismissible>
         <View paddingTop={5} align="center" gap={3} maxWidth="100%">
@@ -208,7 +227,7 @@ export const UserCreateAction = () => {
             </FormControl>
           </Grid>
           <div className="veau-actions w-full flex-r flex-cb">
-            <Button onClick={deactivate} rounded>Cancelar</Button>
+            <Button onClick={handleCancel} rounded>Cancelar</Button>
             <Button onClick={handleCreate} color="primary" rounded>Crear</Button>
           </div>
         </View>

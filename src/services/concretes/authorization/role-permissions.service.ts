@@ -9,7 +9,7 @@ export class RolePermissionsService extends CRUDBaseService<RolePermissions> {
 
   async initialize(tenantId: string) {
     try {
-      await this.http.get(this.url(`initialize/${tenantId}`));
+      await this.http.post(this.url(`initialize/${tenantId}`));
     } catch (error) {
       if (error instanceof AxiosError) {
         this.toaster.warning(

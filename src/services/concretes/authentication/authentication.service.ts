@@ -16,6 +16,7 @@ export class AuthenticationService extends BaseService {
       });
 
       localStorage.setItem(import.meta.env.VITE_JWT_SECTION, response.data.jwt);
+      return true;
     } catch (error) {
       if (error instanceof AxiosError) {
         this.toaster.warning(

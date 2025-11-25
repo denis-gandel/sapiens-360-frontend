@@ -86,7 +86,6 @@ export const ViewUpdateAction = ({ user }: Props) => {
 
     await userService.update(data, user.id ?? "")
     deactivate()
-
   }
 
   useEffect(() => {
@@ -107,7 +106,7 @@ export const ViewUpdateAction = ({ user }: Props) => {
       <Tooltip text="Ver/Editar usuario">
         {(attributes) => <Button attributes={attributes} icon={UserPen} color="primary" onClick={activate} />}
       </Tooltip>
-      <Modal active={active} onClose={deactivate}>
+      <Modal active={active} onClose={deactivate} position="end">
         <Dismissible onClose={deactivate} closeAriaLabel="Close modal">
           <Modal.Title>Detalles del usuario</Modal.Title>
         </Dismissible>

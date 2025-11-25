@@ -120,7 +120,7 @@ export abstract class CRUDBaseService<T>
 
   async update(body: T, id: string | number): Promise<void> {
     try {
-      await this.http.put(this.url(`by/${id}`), { body });
+      await this.http.put(this.url(`${id}`), { body });
       this.toaster.success("Se actualizo satisfactoriamente.");
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -146,7 +146,7 @@ export abstract class CRUDBaseService<T>
 
   async destroy(id: string | number): Promise<void> {
     try {
-      await this.http.delete(this.url(`by/${id}`));
+      await this.http.delete(this.url(`${id}`));
       this.toaster.success("Usuario eliminado con éxito.");
     } catch (error) {
       if (error instanceof AxiosError) {

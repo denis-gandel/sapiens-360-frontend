@@ -1,0 +1,21 @@
+Nombres,Apellidos,CI,Correo,Contraseña,Telefono,Rol ID,Genero,Fecha Nacimiento
+Luis,Castro,1122334,luis.castro@pedropoveda.edu.bo,Luis123,60000011,1,M,2005-04-12
+Valeria,Mendoza,2233445,valeria.mendoza@pedropoveda.edu.bo,Valeria123,60000012,1,F,2006-08-17
+Jorge,Rivas,3344556,jorge.rivas@pedropoveda.edu.bo,Jorge123,60000013,1,M,2005-10-29
+Camila,Ortiz,4455667,camila.ortiz@pedropoveda.edu.bo,Camila123,60000014,1,F,2006-03-08
+Andres,Silva,5566778,andres.silva@pedropoveda.edu.bo,Andres123,60000015,1,M,2005-01-27
+Daniela,Carrasco,6677889,daniela.carrasco@pedropoveda.edu.bo,Daniela123,60000016,1,F,2006-11-11
+Fernando,Aguilar,7788990,fernando.aguilar@pedropoveda.edu.bo,Fernando123,60000017,1,M,2005-06-03
+Gabriela,Loayza,8899001,gabriela.loayza@pedropoveda.edu.bo,Gabriela123,60000018,1,F,2006-02-24
+Hector,Arce,9900112,hector.arce@pedropoveda.edu.bo,Hector123,60000019,1,M,2005-09-16
+Paula,Camacho,10111213,paula.camacho@pedropoveda.edu.bo,Paula123,60000020,1,F,2006-05-19
+Rodrigo,Suarez,12131415,rodrigo.suarez@pedropoveda.edu.bo,Rodrigo123,60000021,1,M,2005-07-28
+Natalia,Morales,13141516,natalia.morales@pedropoveda.edu.bo,Natalia123,60000022,1,F,2006-10-09
+Sebastian,Reyes,14151617,sebastian.reyes@pedropoveda.edu.bo,Sebastian123,60000023,1,M,2005-12-21
+Karina,Rivero,15161718,karina.rivero@pedropoveda.edu.bo,Karina123,60000024,1,F,2006-04-14
+Oscar,Valdivia,16171819,oscar.valdivia@pedropoveda.edu.bo,Oscar123,60000025,1,M,2005-03-07
+Florencia,Pacheco,17181920,florencia.pacheco@pedropoveda.edu.bo,Florencia123,60000026,1,F,2006-09-01
+Bruno,Salinas,18192021,bruno.salinas@pedropoveda.edu.bo,Bruno123,60000027,1,M,2005-05-23
+Isabela,Aramayo,19202122,isabela.aramayo@pedropoveda.edu.bo,Isabela123,60000028,1,F,2006-12-28
+Diego,Quispe,20212223,diego.quispe@pedropoveda.edu.bo,Diego123,60000029,1,M,2005-11-02
+Monica,Peralta,21222324,monica.peralta@pedropoveda.edu.bo,Monica123,60000030,1,F,2006-01-30

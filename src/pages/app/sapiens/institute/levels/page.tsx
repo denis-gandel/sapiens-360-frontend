@@ -1,58 +1,52 @@
-import "./style.css";
-
 import { useEffect, useState } from "react";
 import {
   useSapiensLayoutContext,
   useUserContext,
 } from "../../../../../contexts";
 import { Pagination, Table } from "reshaped";
-import { AddButton } from "./components";
-import { ProgramsService } from "../../../../../services";
-import type { Program } from "../../../../../models";
-import { ProgramCell } from "./components/program-cell/component";
+import { AddButton, LevelCell } from "./components";
+import { LevelsService } from "../../../../../services";
+import type { Level } from "../../../../../models";
 
-export function AcademicPrograms() {
+export function Levels() {
   const { setSubtitle, setIsLoading } = useSapiensLayoutContext();
-  const { me } = useUserContext();
-
-  const programsService = new ProgramsService();
-
-  const [programs, setPrograms] = useState<Program[]>([]);
+  const [levels, setLevels] = useState<Level[]>([]);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(0);
+  const { me } = useUserContext();
 
-  const getPrograms = async () => {
-    if (me) {
-      const data = await programsService.index(page, 10, "name", "asc", {
-        tenant_id: me.tenant_id ?? "",
-      });
-      setPrograms(data.data ?? []);
-      setLastPage(data.last_page ?? 0);
-    }
-  };
+  const levelsService = new LevelsService();
 
   useEffect(() => {
     setIsLoading(true);
     setSubtitle(
       <>
-        Programas <span>académicos</span>
+        Niveles <span>académicos</span>
       </>
     );
     setIsLoading(false);
   }, []);
 
   useEffect(() => {
-    getPrograms();
-
+    getLevels();
     const interval = setInterval(() => {
-      getPrograms();
+      getLevels();
     }, 5000);
-
     return () => clearInterval(interval);
-  }, [me]);
+  }, [me, page]);
+
+  const getLevels = async () => {
+    if (me) {
+      const data = await levelsService.index(page, 10, "name", "asc", {
+        tenant_id: me.tenant_id ?? "",
+      });
+      setLevels(data.data ?? []);
+      setLastPage(data.last_page ?? 0);
+    }
+  };
 
   return (
-    <div className="academics-programs-page">
+    <div>
       <div className="app-header">
         <AddButton />
       </div>
@@ -62,16 +56,14 @@ export function AcademicPrograms() {
             <Table.Heading>Nombre</Table.Heading>
             <Table.Heading>Codigo</Table.Heading>
           </Table.Row>
-          {programs && programs.length > 0 ? (
-            programs.map((program) => {
-              return (
-                <ProgramCell key={`program-${program.id}`} program={program} />
-              );
+          {levels && levels.length > 0 ? (
+            levels.map((level) => {
+              return <LevelCell key={`level-${level.id}`} level={level} />;
             })
           ) : (
             <Table.Row>
               <Table.Cell colSpan={2}>
-                Aún no hay programas. ¡Agrega uno nuevo para comenzar!
+                Aún no hay niveles. ¡Agrega uno nuevo para comenzar!
               </Table.Cell>
             </Table.Row>
           )}

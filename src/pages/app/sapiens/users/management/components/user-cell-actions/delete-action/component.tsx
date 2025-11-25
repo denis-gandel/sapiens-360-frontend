@@ -26,7 +26,7 @@ export const DeleteAction = ({ user }: Props) => {
       <Tooltip text="Eliminar usuario">
         {(attributes) => <Button attributes={attributes} icon={UserX} color="critical" onClick={activate} />}
       </Tooltip>
-      <Modal active={active} onClose={deactivate}>
+      <Modal active={active} onClose={deactivate} position="center">
         <Dismissible onClose={deactivate} closeAriaLabel="Close modal">
           <Modal.Title>¿Deseas eliminar este usuario?</Modal.Title>
         </Dismissible>

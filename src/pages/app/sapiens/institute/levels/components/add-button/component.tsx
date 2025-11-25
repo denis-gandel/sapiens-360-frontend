@@ -1,0 +1,162 @@
+import { CaseSensitive, Plus, Shapes } from "lucide-react";
+import {
+  Button,
+  Dismissible,
+  FormControl,
+  Grid,
+  Modal,
+  NumberField,
+  Select,
+  TextArea,
+  TextField,
+  useToggle,
+  View,
+} from "reshaped";
+import { useEffect, useState } from "react";
+import { LevelsService, ProgramsService } from "../../../../../../../services";
+import { useUserContext } from "../../../../../../../contexts";
+import type { Level, Program } from "../../../../../../../models";
+
+type SelectType = { label: string; value: string };
+
+export const AddButton = () => {
+  const { activate, active, deactivate } = useToggle();
+  const { me } = useUserContext();
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [code, setCode] = useState("");
+  const [order, setOrder] = useState(1);
+  const [programId, setProgramId] = useState("");
+  const [programs, setPrograms] = useState<Program[]>([]);
+  const [options, setOptions] = useState<SelectType[]>([]);
+
+  const levelsService = new LevelsService();
+  const programsService = new ProgramsService();
+
+  const create = async () => {
+    if (me) {
+      const body: Level = {
+        name,
+        description,
+        code,
+        tenant_id: me.tenant_id ?? "",
+        order: order,
+        program_id: programId,
+      };
+      levelsService.store(body);
+      deactivate();
+    }
+  };
+
+  const getPrograms = async () => {
+    if (me) {
+      const data = await programsService.index(
+        undefined,
+        undefined,
+        "name",
+        "asc",
+        {
+          tenant_id: me.tenant_id ?? "",
+        }
+      );
+      setPrograms(data ?? []);
+    }
+  };
+
+  const getOptions = () => {
+    if (programs && programs.length > 0) {
+      const options: SelectType[] = programs.map((program) => ({
+        label: program.name ?? "",
+        value: program.id ?? "",
+      }));
+      setOptions(options);
+    }
+  };
+
+  useEffect(() => {
+    getPrograms();
+  }, [me]);
+
+  useEffect(() => {
+    getOptions();
+  }, [me, programs]);
+
+  return (
+    <>
+      <Button icon={Plus} color="primary" onClick={activate} rounded>
+        Agregar programa
+      </Button>
+      <Modal active={active} onClose={deactivate} position="end">
+        <Dismissible onClose={deactivate} closeAriaLabel="Close modal">
+          <Modal.Title>Crear nuevo programa</Modal.Title>
+        </Dismissible>
+        <View paddingTop={5} align="center" gap={3}>
+          <Grid columns={1} gap={4} width="100%">
+            <FormControl required>
+              <FormControl.Label>Nombre</FormControl.Label>
+              <TextField
+                name="name"
+                onChange={(e) => setName(e.value)}
+                placeholder="General"
+                icon={CaseSensitive}
+                value={name}
+              />
+            </FormControl>
+            <FormControl>
+              <FormControl.Label>Descripción</FormControl.Label>
+              <TextArea
+                name="description"
+                onChange={(e) => setDescription(e.value)}
+                placeholder="Descripción..."
+                value={description}
+                resize="none"
+                size="medium"
+              />
+            </FormControl>
+            <FormControl required>
+              <FormControl.Label>Código</FormControl.Label>
+              <TextField
+                name="code"
+                onChange={(e) => setCode(e.value)}
+                placeholder="SAPIENS-123"
+                icon={CaseSensitive}
+                value={code}
+              />
+            </FormControl>
+            <FormControl>
+              <FormControl.Label>Orden</FormControl.Label>
+              <NumberField
+                name="order"
+                onChange={(e) => setOrder(e.value)}
+                value={order}
+                increaseAriaLabel="Increase value"
+                decreaseAriaLabel="Decrease value"
+                min={1}
+                max={100}
+              />
+            </FormControl>
+            <FormControl>
+              <FormControl.Label>Programa:</FormControl.Label>
+              <Select
+                name="program_id"
+                placeholder="Selecciona un programa"
+                options={options}
+                onChange={(e) => setProgramId(e.value)}
+                icon={Shapes}
+              />
+            </FormControl>
+          </Grid>
+          <div className="veau-actions w-full flex-r flex-cb">
+            <Button onClick={deactivate} rounded>
+              Cancelar
+            </Button>
+            <Button onClick={create} color="primary" rounded>
+              Crear
+            </Button>
+          </div>
+        </View>
+      </Modal>
+    </>
+  );
+};
