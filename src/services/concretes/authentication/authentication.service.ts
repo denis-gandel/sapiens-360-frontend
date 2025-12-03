@@ -2,6 +2,7 @@ import { AxiosError } from "axios";
 import type { User } from "../../../models";
 import { BaseService } from "../../bases";
 import { backendHttp } from "../../../utils/http";
+import type { SuccessResponse } from "../../../models/responses/concretes/success-response.model";
 
 export class AuthenticationService extends BaseService {
   constructor() {
@@ -10,12 +11,12 @@ export class AuthenticationService extends BaseService {
 
   async login(email: string, password: string) {
     try {
-      const response = await this.http.post(this.url("login"), {
+      const response = await this.http.post<SuccessResponse<string>>(this.url("login"), {
         email,
         password,
       });
 
-      localStorage.setItem(import.meta.env.VITE_JWT_SECTION, response.data.jwt);
+      localStorage.setItem(import.meta.env.VITE_JWT_SECTION, response.data.data);
       return true;
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -31,13 +32,16 @@ export class AuthenticationService extends BaseService {
   async me(jwt: string) {
     try {
       if (!jwt) return null;
-      const response = await this.http.get(this.url("me"), {
-        headers: {
-          Authorization: jwt,
-        },
-      });
+      const response = await this.http.get<SuccessResponse<User>>(
+        this.url("me"),
+        {
+          headers: {
+            Authorization: jwt,
+          },
+        }
+      );
 
-      return response.data satisfies User;
+      return response.data.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         this.toaster.warning(

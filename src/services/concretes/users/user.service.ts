@@ -1,10 +1,12 @@
 import { AxiosError } from "axios";
 import type { User } from "../../../models";
 import { CRUDBaseService } from "../../bases";
+import type { SuccessResponse } from "../../../models/responses/concretes/success-response.model";
+import { backendHttp } from "../../../utils/http";
 
 export class UserService extends CRUDBaseService<User> {
   constructor() {
-    super("users");
+    super("users", backendHttp);
   }
 
   async verifyCredentials(email: string, password: string) {
@@ -14,7 +16,7 @@ export class UserService extends CRUDBaseService<User> {
         password,
       };
 
-      const response = await this.http.post(
+      const response = await this.http.post<SuccessResponse<User>>(
         this.url("credentials/verify"),
         body
       );
@@ -40,12 +42,15 @@ export class UserService extends CRUDBaseService<User> {
 
   async me(jwt: string) {
     try {
-      const response = await this.http.get(this.url("me"), {
-        headers: {
-          Authorization: jwt,
-        },
-      });
-      return response.data;
+      const response = await this.http.get<SuccessResponse<User>>(
+        this.url("me"),
+        {
+          headers: {
+            Authorization: jwt,
+          },
+        }
+      );
+      return response.data.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         const status = error.response?.status;

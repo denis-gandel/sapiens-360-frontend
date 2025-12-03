@@ -61,7 +61,7 @@ export const AddButton = () => {
           tenant_id: me.tenant_id ?? "",
         }
       );
-      setPrograms(data ?? []);
+      setPrograms(data.items ?? []);
     }
   };
 

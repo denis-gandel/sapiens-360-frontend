@@ -1,10 +1,12 @@
 import type { SetStateAction } from "react";
 import type { Institute } from "../../../models";
 import { CRUDBaseService } from "../../bases";
+import type { SuccessResponse } from "../../../models/responses/concretes/success-response.model";
+import { backendHttp } from "../../../utils/http";
 
 export class InstituteService extends CRUDBaseService<Institute> {
   constructor() {
-    super("academics/institutes");
+    super("academics/institutes", backendHttp);
   }
 
   async verifySubdomain(
@@ -17,8 +19,8 @@ export class InstituteService extends CRUDBaseService<Institute> {
       column: "subdomain",
       value: subdomain,
     };
-    const response = await this.http.get(this.url("by"), { params });
+    const response = await this.http.get<SuccessResponse<boolean>>(this.url("by"), { params });
 
-    if (response) setError("Ese subdominio ya está en uso, prueba con otro.");
+    if (response.data.data) setError("Ese subdominio ya está en uso, prueba con otro.");
   }
 }

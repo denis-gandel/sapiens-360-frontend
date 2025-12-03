@@ -40,8 +40,8 @@ export function Levels() {
       const data = await levelsService.index(page, 10, "name", "asc", {
         tenant_id: me.tenant_id ?? "",
       });
-      setLevels(data.data ?? []);
-      setLastPage(data.last_page ?? 0);
+      setLevels(data.items ?? []);
+      setLastPage(data.lastPage ?? 0);
     }
   };
 

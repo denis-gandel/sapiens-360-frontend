@@ -1,0 +1,33 @@
+Nombres,Apellidos,CI,Correo,Contraseña,Telefono,Rol ID,Genero,Fecha Nacimiento
+
+Luis Alberto,Rojas Mercado,7845123,luis.rojas@pedropoveda.edu.bo,Luis123!*,76451230,3,M,1985-06-12
+María Fernanda,Quinteros Soliz,6234512,maria.quinteros@pedropoveda.edu.bo,Maria123!*,72233410,3,F,1983-03-27
+
+Julio César,Villarroel Lazarte,5347821,julio.villarroel@pedropoveda.edu.bo,Julio123!*,76789432,2,M,1979-01-14
+Ana Paola,López Montaño,4456732,ana.lopez@pedropoveda.edu.bo,Ana123!*,76911223,2,F,1988-07-05
+Samuel,Herrera Rocha,6734521,samuel.herrera@pedropoveda.edu.bo,Samuel123!*,71500239,2,M,1984-11-21
+Andrea,Morales Vargas,5567891,andrea.morales@pedropoveda.edu.bo,Andrea123!*,71122345,2,F,1990-04-17
+Rodrigo,Peña Antezana,4987734,rodrigo.pena@pedropoveda.edu.bo,Rodrigo123!*,72334912,2,M,1982-09-30
+Claudia,Salazar Rivas,5784561,claudia.salazar@pedropoveda.edu.bo,Claudia123!*,76459012,2,F,1986-02-19
+Diego,Antezana Rojas,5123490,diego.antezana@pedropoveda.edu.bo,Diego123!*,70111220,2,M,1981-08-08
+Patricia,Arnez Camacho,4432290,patricia.arnez@pedropoveda.edu.bo,Patricia123!*,76411229,2,F,1987-12-02
+Mauricio,Pardo Céspedes,6230912,mauricio.pardo@pedropoveda.edu.bo,Mauricio123!*,72234190,2,M,1977-10-01
+Karen,Flores Guardia,5122001,karen.flores@pedropoveda.edu.bo,Karen123!*,76400213,2,F,1991-06-22
+
+Mateo Andrés,Sánchez Rivera,9123001,mateo.sanchez@pedropoveda.edu.bo,Mateo123!*,71120031,1,M,2010-03-14
+José,Sánchez Rojas,4887201,jose.sanchez@pedropoveda.edu.bo,Jose123!*,76422110,5,M,1984-05-11
+Laura,Rivera Montaño,5127003,laura.rivera@pedropoveda.edu.bo,Laura123!*,71190822,5,F,1986-02-08
+
+Valentina Sofía,Pérez Arce,9132002,valentina.perez@pedropoveda.edu.bo,Valentina123!*,72340012,1,F,2010-05-20
+Gabriela,Arce Vargas,4988002,gabriela.arce@pedropoveda.edu.bo,Gabriela123!*,76412300,5,F,1985-09-13
+
+Diego Alejandro,Camacho Flores,9132003,diego.camacho@pedropoveda.edu.bo,Diego123!*,76433210,1,M,2011-01-11
+Carlos,Camacho Soliz,5443201,carlos.camacho@pedropoveda.edu.bo,Carlos123!*,72200314,5,M,1983-03-09
+Alicia,Flores Ricalde,6123009,alicia.flores@pedropoveda.edu.bo,Alicia123!*,76411090,5,F,1987-07-04
+
+Camila Fernanda,Álvarez Molina,9145001,camila.alvarez@pedropoveda.edu.bo,Camila123!*,72009811,1,F,2010-09-09
+Diana,Molina Céspedes,5221981,diana.molina@pedropoveda.edu.bo,Diana123!*,71123410,5,F,1984-10-22
+
+Adrián Luis,Rojas Quintana,9151001,adrian.rojas@pedropoveda.edu.bo,Adrian123!*,76430122,1,M,2011-03-02
+Miguel,Rojas Prado,5122100,miguel.rojas@pedropoveda.edu.bo,Miguel123!*,71200981,5,M,1982-06-17
+Fabiola,Quintana Arnez,6321100,fabiola.quintana@pedropoveda.edu.bo,Fabiola123!*,76422091,5,F,1985-12-01

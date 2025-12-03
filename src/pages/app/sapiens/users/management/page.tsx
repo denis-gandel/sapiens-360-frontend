@@ -29,14 +29,14 @@ export function UsersManagment() {
         is_active: true,
       });
 
-      setUsers(data.data ?? []);
-      setLastPage(data.last_page ?? 0);
+      setUsers(data.items ?? []);
+      setLastPage(data.lastPage ?? 0);
     }
   };
 
   const getRoles = async () => {
     const response = await rolesService.index();
-    setRoles(response);
+    setRoles(response.items);
   };
 
   useEffect(() => {

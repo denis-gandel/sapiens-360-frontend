@@ -40,8 +40,8 @@ export function Subjects() {
       const data = await subjectsService.index(page, 10, "name", "asc", {
         tenant_id: me.tenant_id ?? "",
       });
-      setSubjects(data.data ?? []);
-      setLastPage(data.last_page ?? 0);
+      setSubjects(data.items ?? []);
+      setLastPage(data.lastPage ?? 0);
     }
   };
 

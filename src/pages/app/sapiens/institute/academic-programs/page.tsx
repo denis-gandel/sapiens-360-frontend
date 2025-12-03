@@ -26,8 +26,8 @@ export function AcademicPrograms() {
       const data = await programsService.index(page, 10, "name", "asc", {
         tenant_id: me.tenant_id ?? "",
       });
-      setPrograms(data.data ?? []);
-      setLastPage(data.last_page ?? 0);
+      setPrograms(data.items ?? []);
+      setLastPage(data.lastPage ?? 0);
     }
   };
 

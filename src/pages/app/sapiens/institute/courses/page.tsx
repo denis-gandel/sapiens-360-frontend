@@ -40,8 +40,8 @@ export function Courses() {
       const data = await coursesService.index(page, 10, "name", "asc", {
         tenant_id: me.tenant_id ?? "",
       });
-      setCourses(data.data ?? []);
-      setLastPage(data.last_page ?? 0);
+      setCourses(data.items ?? []);
+      setLastPage(data.lastPage ?? 0);
     }
   };
 

@@ -7,6 +7,13 @@ export const backendHttp = axios.create({
   },
 });
 
+export const lmsHttp = axios.create({
+  baseURL: import.meta.env.VITE_LMS_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
 export const fileServerHttp = axios.create({
   baseURL: import.meta.env.VITE_FILE_SERVER_URL,
   headers: {

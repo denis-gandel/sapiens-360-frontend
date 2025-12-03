@@ -107,7 +107,7 @@ export const UserCreateAction = () => {
   const getRoles = async () => {
     const response = await rolesService.index()
 
-    const result = response.map((role) => {
+    const result = response.items.map((role) => {
       return { label: role.name, value: `${role.id}` }
     })
 

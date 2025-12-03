@@ -3,6 +3,14 @@ import type { IService } from "./base.service.interface";
 type FilterValue = string | number | boolean;
 type Direction = "asc" | "des" | null;
 
+type paginateResponse<T> = {
+  items: T[];
+  currentPage: number;
+  lastPage: number;
+  perPage: number;
+  total: number;
+};
+
 export interface ICRUDService<T> extends IService {
   index(
     page?: number,
@@ -10,7 +18,7 @@ export interface ICRUDService<T> extends IService {
     orderBy?: string,
     direction?: Direction,
     filters?: Record<string, FilterValue>
-  ): Promise<T[]>;
+  ): Promise<paginateResponse<T>>;
 
   show(
     column: string,

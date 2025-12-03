@@ -42,7 +42,7 @@ export function SapiensRoutes() {
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/lms" element={<Lms />} />
+          <Route path="/lms/*" element={<Lms />} />
           <Route path="/users/*" element={<UsersRoutes />} />
           <Route path="/institute/*" element={<InstituteRoutes />} />
         </Routes>
