@@ -17,6 +17,7 @@
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.1",
     "reshaped": "^3.7.4",
+    "typescript-json-serializer": "^6.0.1",
     "xlsx": "^0.18.5",
     "zod": "^4.1.11"
   },
