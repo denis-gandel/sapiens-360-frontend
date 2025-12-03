@@ -1,15 +1,17 @@
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-
-import { Dashboard, Lms } from "./";
+import { Button, useToast } from "reshaped";
+import { BadgeAlert, X } from "lucide-react";
 
 import { SapiensLayoutProvider, useUserContext } from "../../../contexts";
 import { SapiensLayout } from "../../../layouts";
-import { UsersRoutes } from "./users";
-import { InstituteRoutes } from "./institute";
-import { useEffect } from "react";
-import { Button, useToast } from "reshaped";
-import { BadgeAlert, X } from "lucide-react";
-import { Profile } from "./profile/page";
+
+// Lazy load components
+const Dashboard = lazy(() => import("./dashboard").then(module => ({ default: module.Dashboard })));
+const Lms = lazy(() => import("./lms").then(module => ({ default: module.Lms })));
+const UsersRoutes = lazy(() => import("./users").then(module => ({ default: module.UsersRoutes })));
+const InstituteRoutes = lazy(() => import("./institute").then(module => ({ default: module.InstituteRoutes })));
+const Profile = lazy(() => import("./profile/page").then(module => ({ default: module.Profile })));
 
 export function SapiensRoutes() {
   const { me, jwt, permissions } = useUserContext();
@@ -39,13 +41,15 @@ export function SapiensRoutes() {
   return (
     <SapiensLayoutProvider>
       <SapiensLayout>
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/lms/*" element={<Lms />} />
-          <Route path="/users/*" element={<UsersRoutes />} />
-          <Route path="/institute/*" element={<InstituteRoutes />} />
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/lms/*" element={<Lms />} />
+            <Route path="/users/*" element={<UsersRoutes />} />
+            <Route path="/institute/*" element={<InstituteRoutes />} />
+          </Routes>
+        </Suspense>
       </SapiensLayout>
     </SapiensLayoutProvider>
   );

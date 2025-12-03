@@ -16,4 +16,27 @@ export default defineConfig({
       "@validations": path.resolve(__dirname, "./src/validations"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // React ecosystem
+          'react-vendor': ['react', 'react-dom'],
+          'react-router': ['react-router-dom'],
+          
+          // UI library
+          'ui-vendor': ['reshaped'],
+          
+          // Utility libraries
+          'utils-vendor': ['axios', 'zod', 'typescript-json-serializer'],
+          
+          // Large libraries
+          'xlsx-vendor': ['xlsx'],
+          'icons-vendor': ['lucide-react', 'lucide-static'],
+        },
+      },
+    },
+    // Increase chunk size warning limit if needed
+    chunkSizeWarningLimit: 1000,
+  },
 });

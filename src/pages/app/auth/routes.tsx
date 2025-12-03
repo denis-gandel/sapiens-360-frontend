@@ -1,13 +1,18 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Login } from "./login/page";
 import { RegistrationLayout } from "../../../layouts";
+
+// Lazy load components
+const Login = lazy(() => import("./login/page").then(module => ({ default: module.Login })));
 
 export function AuthRoutes() {
   return (
     <RegistrationLayout>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Suspense>
     </RegistrationLayout>
   )
 }
